@@ -6,8 +6,15 @@ gem 'sequel', '~> 4.42.0'
 
 gem 'i18n', '~> 0.7.0'
 
-gem 'jdbc-sqlite3', '~> 3.15.1', platform: :jruby
-gem 'sqlite3', '~> 1.3.12', platform: :ruby
-
 gem 'puma', '~> 3.6.0'
 gem 'bcrypt', '~> 3.1.6'
+
+group :development do
+	gem 'jdbc-sqlite3', '~> 3.15.1', platform: :jruby
+	gem 'sqlite3', '~> 1.3.12', platform: :ruby
+end
+
+group :production do
+	gem 'jdbc-postgres' #, '~> 9.4', platform: :jruby
+	gem 'pg', platform: :ruby
+end
