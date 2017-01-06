@@ -11,8 +11,8 @@ services:
     environment:
       - DATABASE_URL=jdbc:postgresql://db/postgres?user=postgres&password=postgres
       - RACK_ENV=production
-    volumes:
-      - .:/myapp
+    # volumes:
+    #   - .:/myapp
     ports:
       - "3000:3000"
     depends_on:
