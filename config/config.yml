@@ -1,0 +1,9 @@
+development:
+  port: 3000
+  bind: '0.0.0.0'
+test:
+  foo: test
+  bar: bar
+production:
+  foo: production
+  bar: bar
