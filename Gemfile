@@ -8,3 +8,6 @@ gem 'i18n', '~> 0.7.0'
 
 gem 'jdbc-sqlite3', '~> 3.15.1', platform: :jruby
 gem 'sqlite3', '~> 1.3.12', platform: :ruby
+
+gem 'puma', '~> 3.6.0'
+gem 'bcrypt', '~> 3.1.6'

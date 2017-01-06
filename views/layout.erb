@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 		<title> JRUBY STARTUP </title>
-		
+
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
 		<!-- sass built -->
@@ -15,7 +15,7 @@
 
 		<div class="container">
 			<div class="jumbotron">
-				<h1> <%= t :Hello %>, <%= session[:user_id] || 'Anonymous'%>!</h1>
+				<h1> <%= t :Hello %>, <%= current_user && current_user.username || 'Anonymous'%>!</h1>
 
 				<ul class="list-unstyled list-inline">
 					<li>

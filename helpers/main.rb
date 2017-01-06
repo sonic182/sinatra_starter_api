@@ -23,6 +23,10 @@ module Sinatra
         I18n.locale
       end
 
+      def current_user
+        @user || @use = User.where(id: session[:user_id]).first
+      end
+
     end
   end
 end

@@ -6,7 +6,14 @@ module Sinatra
         def self.registered(app)
 
 					index = lambda do
-						@items = DB[:items].all
+            if is_authenticated?
+              @user = current_user
+                if @user.update(count: @user.count + 1)
+                  @updated = true
+                else
+                  @updated = false
+                end
+            end
             erb :index
           end
 

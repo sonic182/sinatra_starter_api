@@ -10,9 +10,10 @@ require 'i18n/backend/fallbacks'
 
 
 required_dirs = [
-  './controllers/*.rb',
+  './config/app/*.rb',
   './helpers/*.rb',
-  './config/*.rb',
+  './models/*.rb',
+  './controllers/*.rb',
 ]
 
 
