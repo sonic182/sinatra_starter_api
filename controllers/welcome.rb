@@ -6,7 +6,7 @@ module Sinatra
         def self.registered(app)
 
 					index = lambda do
-            # require_logged_in
+            require_logged_in
 						@items = DB[:items].all
             erb :index
           end

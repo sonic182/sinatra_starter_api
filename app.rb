@@ -8,9 +8,11 @@ required_dirs = [
   './config/*.rb',
 ]
 
+
 required_dirs.each do |dir|
   Dir[dir].each {|file| require file }
 end
+
 
 class MyApp < Sinatra::Base
   register Sinatra::ConfigFile
@@ -26,6 +28,7 @@ class MyApp < Sinatra::Base
 
   helpers Sinatra::MyApp::Helpers
   register Sinatra::MyApp::Controllers::Welcome
+  register Sinatra::MyApp::Controllers::Auth
 
   # start the server if ruby file executed directly
   run! if app_file == $0
