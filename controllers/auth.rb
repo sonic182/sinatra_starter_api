@@ -11,12 +11,12 @@ module Sinatra
 
           signup = lambda do
             session[:user_id] = params['name']
-            redirect('/')
+            redirect(url('/'))
           end
 
           signout = lambda do
             session[:user_id] = nil
-            redirect('/')
+            redirect(url('/'))
           end
 
           app.get  '/login', &login
@@ -24,7 +24,6 @@ module Sinatra
           # UNSAFE, must be post method
           app.get  '/signout', &signout
         end
-
       end
     end
   end

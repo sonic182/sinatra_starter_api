@@ -3,11 +3,24 @@ module Sinatra
     module Helpers
 
       def require_logged_in
-        redirect('/login') unless is_authenticated?
+        redirect("/#{current_locale}/login") unless is_authenticated?
       end
 
       def is_authenticated?
         return !!session[:user_id]
+      end
+
+      # Always absolute urls!
+      def url str
+        "/#{current_locale}" + str
+      end
+
+      def t(*args)
+        I18n.t(*args)
+      end
+
+      def current_locale
+        I18n.locale
       end
 
     end

@@ -6,6 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon --exec 'ruby' app.rb",
+    "dev:java": "ruby app.rb",
     "watch": "gulp watch",
     "build": "gulp build",
     "build:prod": "NODE_ENV=production gulp build"
