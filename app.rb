@@ -1,13 +1,11 @@
 require 'sinatra/base'
 require "sinatra/config_file"
-# require "sinatra/reloader"
 require "sinatra/namespace"
 
 require 'i18n'
 require 'i18n/backend/fallbacks'
 
-# require 'rack/contrib'
-
+require './controllers/base'
 
 required_dirs = [
   './config/app/*.rb',
@@ -16,20 +14,17 @@ required_dirs = [
   './controllers/*.rb',
 ]
 
-
 required_dirs.each do |dir|
   Dir[dir].each {|file| require file }
 end
+
+require './config/setup'
 
 
 class MyApp < Sinatra::Base
   register Sinatra::ConfigFile
   register Sinatra::Namespace
 
-  # If required sinatra/reloader
-  # configure :development do
-  #   register Sinatra::Reloader
-  # end
 
   config_file './config/config.yml'
   set :root, File.dirname(__FILE__)
@@ -64,8 +59,21 @@ class MyApp < Sinatra::Base
   enable :sessions
 
   helpers Sinatra::MyApp::Helpers
-  register Sinatra::MyApp::Controllers::Welcome
-  register Sinatra::MyApp::Controllers::Auth
+
+  # Routes
+  # Defining all routes here helps to avoid name colision
+  # blocks are passed by reference with '&' key
+  get '/', &WelcomeController.index
+
+  get  '/login', &AuthController.login
+  post  '/signin', &AuthController.signin
+
+  get  '/signup', &AuthController.signup
+  post  '/signup', &AuthController.signup_post
+
+  get  '/signout', &AuthController.signout
+  post  '/signout', &AuthController.signout_post
+
 
   # start the server if ruby file executed directly
   run! if app_file == $0
