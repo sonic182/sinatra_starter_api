@@ -27,6 +27,10 @@ module Sinatra
         @user || @use = User.where(id: session[:user_id]).first
       end
 
+      def logger
+        request.logger
+      end
+
     end
   end
 end

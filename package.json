@@ -7,6 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon --exec 'ruby' app.rb",
     "dev:java": "ruby app.rb",
+    "start": "RACK_ENV=production bundle exec puma -C config/puma.rb",
     "watch": "./node_modules/.bin/gulp watch",
     "build": "./node_modules/.bin/gulp build",
     "build:prod": "NODE_ENV=production ./node_modules/.bin/gulp build"

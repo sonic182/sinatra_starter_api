@@ -15,7 +15,20 @@ namespace :db do
     end
   end
 
-	# rake db:migrate
-	# rake db:migrate[42]
+	desc "Get current Schema as a migration in db/schema.rb"
+  task :dump do |t|
+    require "open3"
+		url = 'sqlite://db.sqlite3'
+		url = ENV["DATABASE_URL"] ? ENV["DATABASE_URL"] : url
+
+		cmd = "sequel -d #{url} > db/schema.rb"
+		stdin, stdout, stderr, wait_thr = Open3.popen3(cmd)
+		stdout.gets(nil)
+		stdout.close
+		stderr.gets(nil)
+		stderr.close
+		exit_code = wait_thr.value
+
+  end
 
 end

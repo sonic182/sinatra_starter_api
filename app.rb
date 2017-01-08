@@ -25,12 +25,19 @@ class MyApp < Sinatra::Base
   register Sinatra::ConfigFile
   register Sinatra::Namespace
 
-
+  # SOME OTHER BASIC CONFIGURATIONS
   config_file './config/config.yml'
   set :root, File.dirname(__FILE__)
 
-  # I18n config
   configure do
+    # LOGGING CONFIGURATION
+    enable :logging
+    @file = File.new("#{settings.root}/logs/#{settings.environment}.log", 'a+')
+    @file.sync = true
+    use Rack::CommonLogger, @file
+    DB.logger = [Logger.new(@file), Logger.new($stdout)]
+
+    # I18n config
     I18n::Backend::Simple.send(:include, I18n::Backend::Fallbacks)
     I18n.load_path = Dir[File.join(settings.root, 'locales', '*.yml')]
     I18n.backend.load_translations
