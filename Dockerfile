@@ -1,11 +1,15 @@
-FROM jruby:9.1.6-alpine
+###### FOR USING RUBY
 # FROM ruby:2.3.3
+# RUN curl -sL https://deb.nodesource.com/setup_6.x | bash - \
+# && apt-get install -y build-essential libpq-dev nodejs \
+# && npm install -g yarn \
+# && rm -rf /var/lib/apt/lists/*
 
-# RUN apt-get update -qq && apt-get install -y build-essential libpq-dev nodejs \
-# 		&& mkdir /myapp
-
-RUN apk add --no-cache nodejs \
+###### FOR USING JRUBY
+FROM jruby:9.1.6-alpine
+RUN apk add --no-cache nodejs make \
 		&& npm install -g yarn
+
 
 WORKDIR /myapp
 
