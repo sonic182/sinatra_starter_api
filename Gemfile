@@ -6,7 +6,9 @@ gem 'sequel', '~> 4.42.0'
 
 gem 'i18n', '~> 0.7.0'
 
-gem 'puma', '~> 3.6.0'
+gem 'puma', '~> 3.6.0', platform: :jruby
+gem 'thin', '~> 1.7.0', platform: :ruby
+
 gem 'bcrypt', '~> 3.1.6'
 
 group :development do
@@ -15,6 +17,6 @@ group :development do
 end
 
 group :production do
-	gem 'jdbc-postgres' #, '~> 9.4', platform: :jruby
+	gem 'jdbc-postgres', platform: :jruby
 	gem 'pg', platform: :ruby
 end

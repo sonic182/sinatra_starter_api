@@ -6,8 +6,6 @@ services:
       - POSTGRES_PASSWORD=postgres
   web:
     build: .
-    # command: bundle exec rails s -p 3000 -b '0.0.0.0'
-    command: bundle exec puma -C config/puma.rb
     environment:
       - DATABASE_URL=postgresql://db/postgres?user=postgres&password=postgres
       - RACK_ENV=production
