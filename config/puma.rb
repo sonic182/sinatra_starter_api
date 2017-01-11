@@ -1,14 +1,9 @@
 # Ruby
-# workers Integer(ENV['WEB_CONCURRENCY'] || 1)
-# threads_count = Integer(ENV['RAILS_MAX_THREADS'] || 5)
-threads_count = Integer(ENV['RAILS_MAX_THREADS'] || 20)
+workers Integer(ENV['WEB_CONCURRENCY'] || 4) 							if RUBY_PLATFORM != 'java'
+threads ENV['MIN_THREADS'] || 1, ENV['MAX_THREADS'] || 5
 
-# Jruby
-# threads_count = Integer(ENV['RAILS_MAX_THREADS'] || 20)
-
-threads threads_count, threads_count
-
-preload_app!
+# preload_app! # This decrease performance at last with this sinatra app with ruby,
+# this maybe it's only good for rails apps only
 
 rackup      DefaultRackup
 port        ENV['PORT']     || 3000

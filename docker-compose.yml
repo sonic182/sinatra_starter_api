@@ -11,7 +11,11 @@ services:
       - RACK_ENV=production
     # volumes:
     #   - .:/myapp
-    ports:
-      - "3000:3000"
     depends_on:
       - db
+  nginx:
+    build: ./compose/nginx
+    ports:
+      - "3000:80"
+    depends_on:
+      - web

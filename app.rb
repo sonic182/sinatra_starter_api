@@ -52,7 +52,7 @@ class MyApp < Sinatra::Base
     if match.nil?
       # Get browser language code or nil
       match2 = request.env['HTTP_ACCEPT_LANGUAGE'].nil? ? nil : request.env['HTTP_ACCEPT_LANGUAGE'].match(/\w{2}/)
-      redirect "/#{match2 || I18n.default_locale}" + request.path_info
+      redirect request.base_url + "/#{match2 || I18n.default_locale}" + request.path_info
     end
   end
 

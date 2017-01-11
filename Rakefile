@@ -5,7 +5,9 @@ namespace :db do
   task :migrate, [:version] do |t, args|
     require "sequel"
     Sequel.extension :migration
-    db = ENV["DATABASE_URL"] ? Sequel.connect(ENV["DATABASE_URL"]) : Sequel.sqlite('db.sqlite3')
+		url = ENV['DATABASE_URL']
+	  url = RUBY_PLATFORM == 'java' ? url = 'jdbc:' + url : url if url
+    db = url ? Sequel.connect(url) : Sequel.sqlite('db.sqlite3')
     if args[:version]
       puts "Migrating to version #{args[:version]}"
       Sequel::Migrator.run(db, "db/migrations", target: args[:version].to_i)

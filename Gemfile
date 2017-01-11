@@ -6,8 +6,9 @@ gem 'sequel', '~> 4.42.0'
 
 gem 'i18n', '~> 0.7.0'
 
-gem 'puma', '~> 3.6.0', platform: :jruby
-gem 'thin', '~> 1.7.0', platform: :ruby
+# gem 'puma', '~> 3.6.0', platform: :jruby
+gem 'puma', '~> 3.6.0'
+# gem 'thin', '~> 1.7.0', platform: :ruby
 
 gem 'bcrypt', '~> 3.1.6'
 
