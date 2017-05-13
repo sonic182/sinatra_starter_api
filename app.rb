@@ -3,22 +3,20 @@ require 'sinatra/json'
 # require "sinatra/config_file" # config file, I don't really need it
 # require "sinatra/namespace" # namespace for routes
 
-
 require './controllers/base'
 
 required_dirs = [
   './config/app/*.rb',
   './helpers/*.rb',
   './models/*.rb',
-  './controllers/*.rb',
+  './controllers/*.rb'
 ]
 
 required_dirs.each do |dir|
-  Dir[dir].each {|file| require file }
+  Dir[dir].each { |file| require file }
 end
 
 require './config/setup'
-
 
 class MyApp < Sinatra::Base
   # register Sinatra::ConfigFile
@@ -36,7 +34,6 @@ class MyApp < Sinatra::Base
     @file.sync = true
     use Rack::CommonLogger, @file
     DB.logger = [Logger.new(@file), Logger.new($stdout)]
-
   end
 
   configure do
@@ -53,11 +50,11 @@ class MyApp < Sinatra::Base
 
     case RUBY_PLATFORM
     when 'java'
-    	require 'jrjackson'
-    	set :json_encoder, JrJackson::Json
+      require 'jrjackson'
+      set :json_encoder, JrJackson::Json
     else
-    	require 'oj'
-    	Oj.default_options = {:mode => :compat }
+      require 'oj'
+      Oj.default_options = { mode: :compat }
       # set :json_encoder, Oj
     end
 
@@ -69,7 +66,6 @@ class MyApp < Sinatra::Base
     #     resource '*', headers: :any, methods: [:get, :post, :put, :patch, :delete, :options]
     #   end
     # end
-
   end
 
   # before do
@@ -86,6 +82,5 @@ class MyApp < Sinatra::Base
   get '/', &WelcomeController.index
   get '/json', &WelcomeController.json
 
-
-  run! if app_file == $0
+  run! if app_file == $PROGRAM_NAME
 end

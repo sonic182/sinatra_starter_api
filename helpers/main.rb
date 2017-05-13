@@ -1,7 +1,6 @@
 module Sinatra
   module MyApp
     module Helpers
-
       # def require_logged_in
       #   redirect("/#{current_locale}/login") unless is_authenticated?
       # end
@@ -24,7 +23,7 @@ module Sinatra
         I18n.locale
       end
 
-      def set_locale locale
+      def set_locale(locale)
         I18n.locale = locale
       end
 
@@ -35,7 +34,6 @@ module Sinatra
       def logger
         request.logger
       end
-
     end
   end
 end
